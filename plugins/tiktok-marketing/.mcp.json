@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "tiktok-ads": {
+      "type": "http",
+      "url": "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-flat"
+    },
+    "tiktok-organic-social": {
+      "type": "http",
+      "url": "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-organic-social"
+    },
+    "tiktok-one": {
+      "type": "http",
+      "url": "https://business-api.tiktok.com/open_mcp/tto-mcp"
+    }
+  }
+}

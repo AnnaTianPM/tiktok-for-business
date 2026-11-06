@@ -1,0 +1,12 @@
+{
+  "name": "annatianpm-tiktok",
+  "description": "TikTok Marketing plugins by Anna Tian: Ads launch, organic + Spark Ads, TikTok One creator workflows",
+  "owner": { "name": "Anna Tian" },
+  "plugins": [
+    {
+      "name": "tiktok-marketing",
+      "source": "./plugins/tiktok-marketing",
+      "description": "TikTok Ads / Social Organic / TikTok One 三个连接器 + 三个编排 Skill：一句话建广告、账号经营与 Spark Ads 加热、找达人到达人视频投放"
+    }
+  ]
+}
