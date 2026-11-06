@@ -1,24 +1,22 @@
-# annatianpm-tiktok marketplace
-
-Claude plugin marketplace for TikTok marketing workflows.
+# TikTok for Business · Claude plugin marketplace
 
 ## Install (Claude Code)
 
 ```
-claude plugin marketplace add AnnaTianPM/tiktok-marketing-marketplace
-claude plugin install tiktok-marketing@annatianpm-tiktok
+claude plugin install tiktok-for-business --marketplace AnnaTianPM/tiktok-for-business
 ```
 
-One step on Claude Code 2.1.292+:
+Or in two steps:
 
 ```
-claude plugin install tiktok-marketing --marketplace AnnaTianPM/tiktok-marketing-marketplace
+claude plugin marketplace add AnnaTianPM/tiktok-for-business
+claude plugin install tiktok-for-business@tiktok-for-business
 ```
 
 ## Install (Cowork)
 
-Plugins page → Add marketplace → paste `AnnaTianPM/tiktok-marketing-marketplace` → Install **tiktok-marketing**.
+Plugins page → Add marketplace → `AnnaTianPM/tiktok-for-business` → install **TikTok for Business**.
 
 ## Plugins
 
-- **tiktok-marketing**: 3 TikTok MCP connectors (Ads, Social Organic, TikTok One) + 3 skills (tt-ads-launch, tt-organic-spark, tt-tto-creator).
+- **tiktok-for-business**: 3 TikTok MCP connectors (Ads, Social Organic, TikTok One) + 3 skills (tt-ads-launch, tt-organic-spark, tt-tto-creator).

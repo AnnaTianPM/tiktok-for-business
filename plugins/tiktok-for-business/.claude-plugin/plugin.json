@@ -1,0 +1,24 @@
+{
+  "name": "tiktok-for-business",
+  "displayName": "TikTok for Business",
+  "version": "0.1.0",
+  "description": "TikTok for Business 官方 Claude 插件。连上你的广告账户、TikTok 账号和 TikTok One，用一句话完成三件事：建出能投放的广告（tt-ads-launch），把跑得好的帖子加热成 Spark Ads（tt-organic-spark），找达人并把达人视频投出去（tt-tto-creator）。",
+  "author": {
+    "name": "TikTok for Business"
+  },
+  "keywords": [
+    "tiktok",
+    "tiktok-for-business",
+    "ads",
+    "spark-ads",
+    "creator",
+    "tiktok-one",
+    "organic"
+  ],
+  "mcpServers": "./.mcp.json",
+  "license": "MIT",
+  "icon": "./.claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://www.tiktok.com/legal/page/global/privacy-policy/en",
+  "homepage": "https://github.com/AnnaTianPM/tiktok-for-business",
+  "repository": "https://github.com/AnnaTianPM/tiktok-for-business"
+}
