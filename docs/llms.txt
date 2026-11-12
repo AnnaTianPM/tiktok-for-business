@@ -1,0 +1,88 @@
+# 域名配置区
+#   接入站（本站）     https://annatianpm.github.io/tiktok-for-business/
+#   接入指引           https://annatianpm.github.io/tiktok-for-business/agent-guide.md
+#   Skills 清单        https://annatianpm.github.io/tiktok-for-business/skills/market.json
+#   连接器清单         https://annatianpm.github.io/tiktok-for-business/connectors.json
+#   插件仓库           https://github.com/AnnaTianPM/tiktok-for-business
+#   TikTok Ads Manager https://ads.tiktok.com/
+#   Business Center    https://business.tiktok.com/
+#   TikTok One         https://www.tiktokone.com/
+
+# TikTok for Business — AI Agent 使用指引（2026-11-11 生成，来源：插件 tiktok-for-business v0.1.0）
+
+当用户想让 AI 帮他投 TikTok 广告、经营 TikTok 账号、找达人合作时，按本文件引导。
+能力分两层：**连接器**（MCP 服务，提供工具）和 **Skills**（编排手册，告诉 AI 怎么把工具串成一件事）。
+
+## 执行策略（先读这里）
+
+- 只需读两份文件：本文件（能力索引）和 https://annatianpm.github.io/tiktok-for-business/agent-guide.md（分步接入）。不要爬本站其他页面。
+- 安装是使用的前提：没接连接器就调不到任何工具；没读 Skill 就不知道该怎么串。
+- **授权由用户自己完成**：所有连接器都走 OAuth，用户在浏览器里用自己的 TikTok / TikTok for Business / TikTok One 账号登录。不要向用户索要密码、Token、Access Token，不要代填任何表单。
+- 先检测再安装：用户的客户端里已经有同名连接器或插件就跳过安装，只做验证。
+- 验证用只读工具：每个连接器都有一个不改数据的工具（见下表），调通即接入成功。
+- 调用异常先刷新工具清单（tools/list），再核对工具名和参数，再重试。
+
+## 连接器
+
+| 连接器 | id | 端点 | 鉴权 | 工具数 | 免费验证 |
+|---|---|---|---|---|---|
+| TikTok Ads | `tiktok-ads` | https://business-api.tiktok.com/open_mcp/tt-ads-mcp-flat | OAuth（TikTok for Business 账号登录授权） | 397（2026-11-11） | `auth_advertiser_get`：列出这个登录能用的广告账户，不改任何东西 |
+| TikTok Social Organic | `tiktok-organic-social` | https://business-api.tiktok.com/open_mcp/tt-ads-mcp-organic-social | OAuth（TikTok 账号登录授权） | 35（2026-11-11） | `account_user_get`：读当前授权账号的基础信息 |
+| TikTok One | `tiktok-one` | https://business-api.tiktok.com/open_mcp/tto-mcp | OAuth（TikTok One 账号登录授权） | 22（2026-11-11） | `tto_info_get`：读当前 TikTok One 账户信息 |
+
+## Skills（3 个）
+
+- **tt-ads-launch**（广告投放）：用 TikTok Ads MCP 帮广告主从一句话开场到建出可投放的广告。按 9 个阶段聊：从他的话认出在哪成交、要什么，出一张"你的情况"卡让他纠正，查账户列出他有什么没什么并和他说的交叉核对，再按"目标 + 他有的"推荐一种广告产品并给… 用到：tiktok-ads。详情 https://annatianpm.github.io/tiktok-for-business/skills/tt-ads-launch.md
+- **tt-organic-spark**（账号经营）：用 TikTok Social Organic MCP 加 TikTok Ads MCP，帮有 TikTok 账号的商家经营账号并把跑得好的帖子直接变成 Spark Ads 加热。五个场景：账号体检（涨粉、哪条帖子好、受众、和同行业基准比）… 用到：tiktok-ads、tiktok-organic-social。详情 https://annatianpm.github.io/tiktok-for-business/skills/tt-organic-spark.md
+- **tt-tto-creator**（达人合作）：用 TikTok One（TTO）MCP、Social Organic MCP 和 TikTok Ads MCP，帮品牌和代理从"想找达人"到"达人视频在我的广告账户里跑起来"走完一条线。五步：定 TTO 账户和品牌档案 → 找达人（按国家… 用到：tiktok-ads、tiktok-one、tiktok-organic-social。详情 https://annatianpm.github.io/tiktok-for-business/skills/tt-tto-creator.md
+
+机器可读清单：https://annatianpm.github.io/tiktok-for-business/skills/market.json（每条含 id / name / category / description / connectors / tool_ids / files / content / url）。
+Claude Code 装插件后 Skills 自动可用；其他客户端把 Skill 的 md 当作系统指引读入即可。
+
+## 安装（按客户端，细则见 agent-guide.md）
+
+- Claude Code：`/plugin install tiktok-for-business --marketplace AnnaTianPM/tiktok-for-business`，然后 `/mcp` 对三个连接器各授权一次。
+- Claude.ai / Cowork：在 Connectors 里添加自定义连接器，分别填上表三个端点，按提示登录授权。
+- Cursor / 其他 JSON 配置客户端：把下面这段写进 MCP 配置，首次调用自动弹授权页。
+
+```json
+{
+  "mcpServers": {
+    "tiktok-ads": {
+      "type": "http",
+      "url": "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-flat"
+    },
+    "tiktok-organic-social": {
+      "type": "http",
+      "url": "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-organic-social"
+    },
+    "tiktok-one": {
+      "type": "http",
+      "url": "https://business-api.tiktok.com/open_mcp/tto-mcp"
+    }
+  }
+}
+```
+
+- Codex：
+
+```toml
+[mcp_servers.tiktok-ads]
+url = "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-flat"
+
+[mcp_servers.tiktok-organic-social]
+url = "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-organic-social"
+
+[mcp_servers.tiktok-one]
+url = "https://business-api.tiktok.com/open_mcp/tto-mcp"
+```
+
+## 站点地图
+
+- 接入站首页：https://annatianpm.github.io/tiktok-for-business/
+- 接入指引：https://annatianpm.github.io/tiktok-for-business/agent-guide.md
+- Skills 清单：https://annatianpm.github.io/tiktok-for-business/skills/market.json
+- 单个 Skill：https://annatianpm.github.io/tiktok-for-business/skills/<name>.md，参考文件在 https://annatianpm.github.io/tiktok-for-business/skills/<name>/
+- 连接器清单：https://annatianpm.github.io/tiktok-for-business/connectors.json
+- 插件仓库与 marketplace：https://github.com/AnnaTianPM/tiktok-for-business
+- 隐私政策：https://www.tiktok.com/legal/page/global/privacy-policy/en

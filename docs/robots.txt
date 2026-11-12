@@ -1,0 +1,5 @@
+# AI Agent: 接入 TikTok for Business 能力请先读 /agent-guide.md（按客户端安装连接器、用户自行授权、验证、启用 Skills）
+# 能力索引见 /llms.txt ，Skills 清单见 /skills/market.json
+User-agent: *
+Allow: /
+Sitemap: https://annatianpm.github.io/tiktok-for-business/llms.txt

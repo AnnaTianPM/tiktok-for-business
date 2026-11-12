@@ -1,0 +1,73 @@
+{
+  "brand": "TikTok for Business",
+  "site_name": "TikTok for Business · AI Agent 接入站",
+  "tagline": "一个链接，让任何 AI Agent 接上 TikTok 广告、账号经营和达人合作的全部能力",
+  "base_url": "https://annatianpm.github.io/tiktok-for-business/",
+  "lang": "zh-CN",
+  "plugin_dir": "../plugins/tiktok-for-business",
+  "out_dir": "../docs",
+  "marketplace": {
+    "name": "tiktok-for-business",
+    "owner_repo": "AnnaTianPM/tiktok-for-business",
+    "install_cmd": "/plugin install tiktok-for-business --marketplace AnnaTianPM/tiktok-for-business"
+  },
+  "links": {
+    "ads_manager": "https://ads.tiktok.com/",
+    "business_center": "https://business.tiktok.com/",
+    "tiktok_one": "https://www.tiktokone.com/",
+    "api_docs": "https://business-api.tiktok.com/portal/docs",
+    "privacy": "https://www.tiktok.com/legal/page/global/privacy-policy/en",
+    "repo": "https://github.com/AnnaTianPM/tiktok-for-business"
+  },
+  "copy_prompt": "请访问：{base_url} ，接入 TikTok for Business 的 AI Agent 能力（广告投放、账号经营、达人合作），先读 llms.txt 和 agent-guide.md，按指引帮我把 MCP 连接器和 Skills 装到我的工具里。",
+  "clients": [
+    { "id": "claude-code", "name": "Claude Code", "oauth": true, "how": "plugin" },
+    { "id": "claude-ai", "name": "Claude.ai / Cowork", "oauth": true, "how": "connector" },
+    { "id": "cursor", "name": "Cursor", "oauth": true, "how": "json" },
+    { "id": "codex", "name": "Codex", "oauth": true, "how": "toml" },
+    { "id": "other", "name": "其他支持 MCP 的客户端", "oauth": true, "how": "json" }
+  ],
+  "connectors": {
+    "tiktok-ads": {
+      "title": "TikTok Ads",
+      "summary": "广告账户、Campaign / Ad Group / Ad、素材、报表、Pixel、Smart+、GMV Max、受众、Business Center",
+      "auth": "OAuth（TikTok for Business 账号登录授权）",
+      "tool_count": 397,
+      "tool_count_asof": "2026-11-11",
+      "free_check_tool": "auth_advertiser_get",
+      "free_check_desc": "列出这个登录能用的广告账户，不改任何东西",
+      "tool_name_prefixes": ["tto_tcm_", "campaign_", "adgroup_", "ad_", "advertiser_", "auth_", "report_", "creative_", "file_", "identity_", "smart_plus_", "gmv_max_", "pixel_", "store_", "catalog_", "dmp_", "tool_", "tt_video_", "spark_ad_", "bc_", "app_", "lead_", "page_", "optimizer_", "split_test_", "targeting_", "comment_", "term_", "user_info", "video_fix_", "tcm_", "blockedword_", "changelog_", "custom_conversion_", "diagnostic_", "discovery_", "offline_", "pangle_", "payment_", "playable_", "rf_", "search_", "showcase_", "subscription_", "tiktok_", "minis_", "crm_", "ctm_", "audience_", "asset_", "review_"]
+    },
+    "tiktok-organic-social": {
+      "title": "TikTok Social Organic",
+      "summary": "TikTok 账号数据、帖子表现、评论运营、被提及监控、热搜与 hashtag、发帖与广告授权",
+      "auth": "OAuth（TikTok 账号登录授权）",
+      "tool_count": 35,
+      "tool_count_asof": "2026-11-11",
+      "free_check_tool": "account_user_get",
+      "free_check_desc": "读当前授权账号的基础信息",
+      "tool_name_prefixes": ["account_user_", "discovery_", "tto_creator_"]
+    },
+    "tiktok-one": {
+      "title": "TikTok One",
+      "summary": "找达人、看达人画像与视频、建达人合作活动、挂链与 Spark 授权、效果报表",
+      "auth": "OAuth（TikTok One 账号登录授权）",
+      "tool_count": 22,
+      "tool_count_asof": "2026-11-11",
+      "free_check_tool": "tto_info_get",
+      "free_check_desc": "读当前 TikTok One 账户信息",
+      "tool_name_prefixes": ["tto_"]
+    }
+  },
+  "skill_categories": {
+    "tt-ads-launch": "广告投放",
+    "tt-organic-spark": "账号经营",
+    "tt-tto-creator": "达人合作"
+  },
+  "default_category": "场景工作流",
+  "skill_examples": {
+    "tt-ads-launch": "我是独立站卖蜡烛的，想在 TikTok 投广告拉销量，帮我建一条。",
+    "tt-organic-spark": "看看我 TikTok 账号最近哪条视频跑得好，把它加热一下。",
+    "tt-tto-creator": "帮我在美国找 5 个美妆达人，粉丝 10 万以上，发合作邀请。"
+  }
+}

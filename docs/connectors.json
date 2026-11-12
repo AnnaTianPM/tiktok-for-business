@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-11-11",
+  "list": [
+    {
+      "id": "tiktok-ads",
+      "title": "TikTok Ads",
+      "summary": "广告账户、Campaign / Ad Group / Ad、素材、报表、Pixel、Smart+、GMV Max、受众、Business Center",
+      "url": "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-flat",
+      "transport": "http",
+      "auth": "OAuth（TikTok for Business 账号登录授权）",
+      "tool_count": 397,
+      "tool_count_asof": "2026-11-11",
+      "free_check_tool": "auth_advertiser_get",
+      "free_check_desc": "列出这个登录能用的广告账户，不改任何东西"
+    },
+    {
+      "id": "tiktok-organic-social",
+      "title": "TikTok Social Organic",
+      "summary": "TikTok 账号数据、帖子表现、评论运营、被提及监控、热搜与 hashtag、发帖与广告授权",
+      "url": "https://business-api.tiktok.com/open_mcp/tt-ads-mcp-organic-social",
+      "transport": "http",
+      "auth": "OAuth（TikTok 账号登录授权）",
+      "tool_count": 35,
+      "tool_count_asof": "2026-11-11",
+      "free_check_tool": "account_user_get",
+      "free_check_desc": "读当前授权账号的基础信息"
+    },
+    {
+      "id": "tiktok-one",
+      "title": "TikTok One",
+      "summary": "找达人、看达人画像与视频、建达人合作活动、挂链与 Spark 授权、效果报表",
+      "url": "https://business-api.tiktok.com/open_mcp/tto-mcp",
+      "transport": "http",
+      "auth": "OAuth（TikTok One 账号登录授权）",
+      "tool_count": 22,
+      "tool_count_asof": "2026-11-11",
+      "free_check_tool": "tto_info_get",
+      "free_check_desc": "读当前 TikTok One 账户信息"
+    }
+  ]
+}
